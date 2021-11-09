@@ -1,0 +1,10 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: has-operator-catalog
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: quay.io/jcollier/application-service-catalog:next
+  displayName: HAS Operator Catalog
+  publisher: Red Hat
