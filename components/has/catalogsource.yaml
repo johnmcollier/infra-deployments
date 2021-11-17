@@ -5,6 +5,6 @@ metadata:
   namespace: openshift-marketplace
 spec:
   sourceType: grpc
-  image: quay.io/redhat-appstudio/application-service-catalog:sha-4f97678  
+  image: quay.io/jcollier/application-service-catalog:next
   displayName: HAS Operator Catalog
   publisher: Red Hat
