@@ -160,3 +160,6 @@ for APP in $(kubectl get apps -n openshift-gitops -o name --kubeconfig ${CLUSTER
   kubectl patch ${APP} -n openshift-gitops --type merge -p='{"metadata": {"annotations":{"argocd.argoproj.io/refresh": "hard"}}}' --kubeconfig ${CLUSTER_KUBECONFIG}
 done
 
+echo -n "Creating APIBindings for all AppStudio components"
+kustomize build $ROOT/hack/apibindings | envsubst | kubectl apply -f --kubeconfig ${KCP_KUBECONFIG}
+echo

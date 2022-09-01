@@ -12,5 +12,5 @@ spec:
   template:
     spec:
       source:
-        repoURL: https://github.com/johnmcollier/infra-deployments.git
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
         targetRevision: kcp

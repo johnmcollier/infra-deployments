@@ -1,0 +1,16 @@
+apiVersion: apis.kcp.dev/v1alpha1
+kind: APIBinding
+metadata:
+  name: has-binding
+spec:
+  reference:
+    workspace:
+      path: ${ROOT_WORKSPACE}:${APPSTUDIO_WORKSPACE}
+      exportName: has
+  acceptedPermissionClaims:
+      - group: ""
+        resource: "secrets"
+        verbs: ["get", "list", "watch"]
+      - group: ""
+        resource: "configmaps"
+        verbs: ["get", "list", "watch"]

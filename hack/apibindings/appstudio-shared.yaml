@@ -1,0 +1,14 @@
+apiVersion: apis.kcp.dev/v1alpha1
+kind: APIBinding
+metadata:
+  name: appstudio-shared-binding
+spec:
+  reference:
+    workspace:
+      path: root:users:ok:vh:rh-sso-johnmcollier:redhat-appstudio
+      exportName: gitopsrvc-appstudio-shared
+  acceptedPermissionClaims:
+      - group: ""
+        resource: "secrets"
+      - group: ""
+        resource: "namespaces"

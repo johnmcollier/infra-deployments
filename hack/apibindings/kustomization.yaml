@@ -1,10 +1,7 @@
 resources:
-- authorization-in-cluster.yaml
-- authorization-in-kcp.yaml
+- bind-role.yaml
 - has.yaml
 - appstudio-shared.yaml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
-namespace: openshift-gitops
