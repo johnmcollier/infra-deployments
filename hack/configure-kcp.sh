@@ -32,7 +32,7 @@ echo "Using the '${ROOT_WORKSPACE}' workspace as the root"
 KUBECONFIG=${KCP_KUBECONFIG} kubectl ws ${ROOT_WORKSPACE}
 echo
 
-COMPUTE_WORKSPACE=redhat-appstudio-internal-compute
+COMPUTE_WORKSPACE=r-a-i-c
 echo "Creating and accessing '${COMPUTE_WORKSPACE}' for compute:"
 KUBECONFIG=${KCP_KUBECONFIG} kubectl ws create ${COMPUTE_WORKSPACE} --type root:universal --ignore-existing
 KUBECONFIG=${KCP_KUBECONFIG} kubectl ws ${COMPUTE_WORKSPACE}

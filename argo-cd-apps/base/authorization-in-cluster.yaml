@@ -8,7 +8,7 @@ spec:
 
   source:
     path: components/authentication/cluster
-    repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+    repoURL: https://github.com/johnmcollier/infra-deployments.git
     targetRevision: kcp
 
   destination:
