@@ -32,9 +32,15 @@ echo "Using the '${ROOT_WORKSPACE}' workspace as the root"
 KUBECONFIG=${KCP_KUBECONFIG} kubectl ws ${ROOT_WORKSPACE}
 echo
 
-COMPUTE_WORKSPACE=r-a-i-c
+if [[ ${ROOT_WORKSPACE} == "root" ]]
+then
+  COMPUTE_WORKSPACE=${COMPUTE_WORKSPACE:-"redhat-appstudio-internal-compute"}
+else
+  COMPUTE_WORKSPACE=${COMPUTE_WORKSPACE:-"compute"}
+fi
+
 echo "Creating and accessing '${COMPUTE_WORKSPACE}' for compute:"
-KUBECONFIG=${KCP_KUBECONFIG} kubectl ws create ${COMPUTE_WORKSPACE} --type root:universal --ignore-existing
+KUBECONFIG=${KCP_KUBECONFIG} kubectl ws create ${COMPUTE_WORKSPACE} --type root:universal --ignore-existing || true
 KUBECONFIG=${KCP_KUBECONFIG} kubectl ws ${COMPUTE_WORKSPACE}
 echo
 
@@ -90,10 +96,10 @@ done
 echo " OK"
 echo
 
-APPSTUDIO_WORSKPACE=redhat-appstudio
+APPSTUDIO_WORSKPACE=${APPSTUDIO_WORSKPACE:-"redhat-appstudio"}
 echo "Creating and accessing '${APPSTUDIO_WORSKPACE}' for AppStudio controllers:"
 KUBECONFIG=${KCP_KUBECONFIG} kubectl ws ${ROOT_WORKSPACE}
-KUBECONFIG=${KCP_KUBECONFIG} kubectl ws create ${APPSTUDIO_WORSKPACE} --ignore-existing --type root:universal
+KUBECONFIG=${KCP_KUBECONFIG} kubectl ws create ${APPSTUDIO_WORSKPACE} --ignore-existing --type root:universal || true
 REDHAT_APPSTUDIO_URL=$(KUBECONFIG=${KCP_KUBECONFIG} kubectl get workspaces ${APPSTUDIO_WORSKPACE} -o jsonpath='{.status.URL}')
 KUBECONFIG=${KCP_KUBECONFIG} kubectl ws ${APPSTUDIO_WORSKPACE}
 
@@ -147,4 +153,10 @@ stringData:
       }
     }
 EOF
+
+echo
+echo "Triggering hard refresh of all Applications:"
+for APP in $(kubectl get apps -n openshift-gitops -o name --kubeconfig ${CLUSTER_KUBECONFIG}); do
+  kubectl patch ${APP} -n openshift-gitops --type merge -p='{"metadata": {"annotations":{"argocd.argoproj.io/refresh": "hard"}}}' --kubeconfig ${CLUSTER_KUBECONFIG}
+done
 

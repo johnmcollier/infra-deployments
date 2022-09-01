@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    path: components/authentication/cluster
+    path: components/authorization/cluster
     repoURL: https://github.com/johnmcollier/infra-deployments.git
     targetRevision: kcp
 
