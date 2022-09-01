@@ -96,12 +96,12 @@ done
 echo " OK"
 echo
 
-APPSTUDIO_WORSKPACE=${APPSTUDIO_WORSKPACE:-"redhat-appstudio"}
-echo "Creating and accessing '${APPSTUDIO_WORSKPACE}' for AppStudio controllers:"
+APPSTUDIO_WORKSPACE=${APPSTUDIO_WORKSPACE:-"redhat-appstudio"}
+echo "Creating and accessing '${APPSTUDIO_WORKSPACE}' for AppStudio controllers:"
 KUBECONFIG=${KCP_KUBECONFIG} kubectl ws ${ROOT_WORKSPACE}
-KUBECONFIG=${KCP_KUBECONFIG} kubectl ws create ${APPSTUDIO_WORSKPACE} --ignore-existing --type root:universal || true
-REDHAT_APPSTUDIO_URL=$(KUBECONFIG=${KCP_KUBECONFIG} kubectl get workspaces ${APPSTUDIO_WORSKPACE} -o jsonpath='{.status.URL}')
-KUBECONFIG=${KCP_KUBECONFIG} kubectl ws ${APPSTUDIO_WORSKPACE}
+KUBECONFIG=${KCP_KUBECONFIG} kubectl ws create ${APPSTUDIO_WORKSPACE} --ignore-existing --type root:universal || true
+REDHAT_APPSTUDIO_URL=$(KUBECONFIG=${KCP_KUBECONFIG} kubectl get workspaces ${APPSTUDIO_WORKSPACE} -o jsonpath='{.status.URL}')
+KUBECONFIG=${KCP_KUBECONFIG} kubectl ws ${APPSTUDIO_WORKSPACE}
 
 echo "Creating APIBinding '${SYNC_TARGET}' for the compute"
 cat <<EOF | kubectl apply --kubeconfig ${KCP_KUBECONFIG} -f -
@@ -124,15 +124,15 @@ done
 echo " OK"
 echo
 
-echo "Adding Role/RoleBindings for OpenShift GitOps in ${APPSTUDIO_WORSKPACE} workspace:"
+echo "Adding Role/RoleBindings for OpenShift GitOps in ${APPSTUDIO_WORKSPACE} workspace:"
 kubectl apply --kustomize $ROOT/openshift-gitops/in-kcp --kubeconfig ${KCP_KUBECONFIG}
 echo
 
-echo "Getting a token for argocd SA (in ${APPSTUDIO_WORSKPACE} workspace) - kubectl 1.24.x or newer needs to be used."
+echo "Getting a token for argocd SA (in ${APPSTUDIO_WORKSPACE} workspace) - kubectl 1.24.x or newer needs to be used."
 SA_TOKEN=$(kubectl create token argocd --duration 876000h -n controllers-argocd-manager --kubeconfig ${KCP_KUBECONFIG})
 echo
 
-echo "Creating ArgoCD secret representing '${APPSTUDIO_WORSKPACE}' workspace with URL '${REDHAT_APPSTUDIO_URL}' in the compute OpenShift cluster:"
+echo "Creating ArgoCD secret representing '${APPSTUDIO_WORKSPACE}' workspace with URL '${REDHAT_APPSTUDIO_URL}' in the compute OpenShift cluster:"
 cat <<EOF | kubectl apply --kubeconfig ${CLUSTER_KUBECONFIG} -f -
 apiVersion: v1
 kind: Secret
@@ -161,5 +161,36 @@ for APP in $(kubectl get apps -n openshift-gitops -o name --kubeconfig ${CLUSTER
 done
 
 echo -n "Creating APIBindings for all AppStudio components"
+kubectl ws ..
+kubectl ws create appstudio --enter
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: can-bind-appstudio
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: bind-appstudio
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: ${BIND_SCOPE}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: bind-appstudio
+rules:
+- apiGroups:
+  - apis.kcp.dev
+  resourceNames:
+  - kubernetes
+  resources:
+  - apiexports
+  verbs:
+  - bind
+EOF
+echo
 kustomize build $ROOT/hack/apibindings | envsubst | kubectl apply -f --kubeconfig ${KCP_KUBECONFIG}
 echo

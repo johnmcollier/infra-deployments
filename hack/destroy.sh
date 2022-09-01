@@ -56,9 +56,9 @@ clean_kcp() {
     KUBECONFIG=${KCP_KUBECONFIG} kubectl delete workspace ${COMPUTE_WORKSPACE}
     echo
 
-    APPSTUDIO_WORSKPACE=${APPSTUDIO_WORSKPACE:-"redhat-appstudio"}
+    APPSTUDIO_WORKSPACE=${APPSTUDIO_WORKSPACE:-"redhat-appstudio"}
     echo "Removing '${COMPUTE_WORKSPACE}' workspace:"
-    KUBECONFIG=${KCP_KUBECONFIG} kubectl delete workspace ${APPSTUDIO_WORSKPACE}
+    KUBECONFIG=${KCP_KUBECONFIG} kubectl delete workspace ${APPSTUDIO_WORKSPACE}
     echo
   fi
 }

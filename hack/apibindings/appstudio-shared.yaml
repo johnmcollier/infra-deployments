@@ -5,7 +5,7 @@ metadata:
 spec:
   reference:
     workspace:
-      path: root:users:ok:vh:rh-sso-johnmcollier:redhat-appstudio
+      path: ${ROOT_WORKSPACE}:${APPSTUDIO_WORKSPACE}
       exportName: gitopsrvc-appstudio-shared
   acceptedPermissionClaims:
       - group: ""
