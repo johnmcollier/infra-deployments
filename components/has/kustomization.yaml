@@ -1,5 +1,5 @@
 resources:
-- https://github.com/johnmcollier/application-service/config/kcp?ref=9b339660011179c49c8735284e0469df24272ed7
+- https://github.com/johnmcollier/application-service/config/kcp?ref=4d6454b214f6021a61a0c968e48f9242b06e5cb2
 
 
 apiVersion: kustomize.config.k8s.io/v1beta1
