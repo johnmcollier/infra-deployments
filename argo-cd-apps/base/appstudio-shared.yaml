@@ -10,7 +10,7 @@ spec:
       - kcp-name: kcp-unstable
   template:
     metadata:
-      name: '{{kcp-name}}-has'
+      name: '{{kcp-name}}-appstudio-shared'
     spec:
       project: default
 
