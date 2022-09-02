@@ -1,5 +1,5 @@
 resources:
-- https://github.com/redhat-appstudio/application-service/config/kcp?ref=makefilekcp
+- https://github.com/redhat-appstudio/application-service/config/kcp?ref=fae367174bf7c98a144fb6d88908a97febf21438
 
 
 apiVersion: kustomize.config.k8s.io/v1beta1
