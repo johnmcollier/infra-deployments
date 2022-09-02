@@ -7,8 +7,8 @@ kind: Kustomization
 
 images:
 - name: quay.io/redhat-appstudio/application-service
-  newName: quay.io/redhat-appstudio/application-service
-  newTag: 67465f8dece31cde03e3c55d5adc35f21abf4de6
+  newName: quay.io/jcollier/application-service
+  newTag: kcp
 
 configMapGenerator:
 - literals:
