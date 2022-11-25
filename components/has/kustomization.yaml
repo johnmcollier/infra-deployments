@@ -7,8 +7,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
   - name: quay.io/redhat-appstudio/application-service
-    newName: quay.io/jcollier/application-service
-    newTag: latest
+    newName: quay.io/redhat-appstudio/application-service
+    newTag: 3295ca43dae472dee183a13c3fed475d5f6baf4d
 configMapGenerator:
   - literals:
       - GITHUB_ORG=""
