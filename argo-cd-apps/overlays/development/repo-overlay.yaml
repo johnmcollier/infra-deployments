@@ -8,7 +8,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -19,7 +19,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -30,7 +30,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -41,7 +41,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -52,7 +52,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -63,7 +63,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -74,7 +74,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -85,7 +85,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -96,7 +96,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -107,7 +107,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -118,7 +118,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -129,7 +129,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -140,7 +140,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -151,7 +151,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -162,7 +162,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -173,4 +173,4 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/johnmcollier/infra-deployments.git
-    targetRevision: preview-main
+    targetRevision: preview-preview-main
