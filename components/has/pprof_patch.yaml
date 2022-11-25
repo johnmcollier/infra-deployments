@@ -11,4 +11,5 @@ spec:
         env:
           - name: ENABLE_PPROF
             value: "true"
-
+          - name: SKIP_TEKTON
+            value: "true"
