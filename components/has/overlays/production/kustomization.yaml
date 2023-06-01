@@ -1,9 +1,19 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../base
-  - ../base/external-secrets
+  - ../../base/argocd-roles
+  - ../../base/external-secrets
+  - https://github.com/redhat-appstudio/application-service/config/default?ref=a32c938ee1fcafaed4c64abd3ed4864121fd363c
   - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=a32c938ee1fcafaed4c64abd3ed4864121fd363c
+
+components:
+  - ../../components/manager-resources
+  - ../../components/enable-profiling
+
+images:
+  - name: quay.io/redhat-appstudio/application-service
+    newName: quay.io/redhat-appstudio/application-service
+    newTag: 05ee33115e4cd7ebfad61d96ffe5ef36c8159dab
 
 configMapGenerator:
 - literals:
@@ -19,3 +29,4 @@ patches:
       group: external-secrets.io
       version: v1beta1
   - path: ./replicas_patch.yaml
+namespace: application-service
