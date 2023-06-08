@@ -7,8 +7,8 @@ resources:
   - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=05ee33115e4cd7ebfad61d96ffe5ef36c8159dab
 
 components:
-  - ../../base/manager-resources
-  - ../../base/enable-profiling
+  - ../../common/manager-resources
+  - ../../common/enable-profiling
 
 images:
   - name: quay.io/redhat-appstudio/application-service
